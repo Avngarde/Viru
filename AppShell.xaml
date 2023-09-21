@@ -7,7 +7,7 @@
     Shell.FlyoutBehavior="Disabled">
 
     <ShellContent
-        Title="Home"
+        Title="Wallets"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 
