@@ -9,7 +9,7 @@
         <AbsoluteLayout>
             <!--Other components-->
             <Button x:Name="mainPageActionButton" Text="+"
-                    FontSize="35"
+                    FontSize="35" Clicked="mainPageActionButton_Clicked"
             BackgroundColor="{StaticResource Primary}"
         CornerRadius="100"
             AbsoluteLayout.LayoutFlags="PositionProportional"  
