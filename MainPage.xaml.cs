@@ -11,7 +11,7 @@ public partial class MainPage : ContentPage
 
     private async void mainPageActionButton_Clicked(object sender, EventArgs e)
     {
-		await Navigation.PushAsync(new AddWalletPage());
+		string name = await DisplayPromptAsync("Add wallet", "Wallet's name:", "Add");
     }
 }
 
