@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31611.283
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Viru", "Viru.csproj", "{5D30EEC6-DFCD-40F1-A635-102681D39711}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViruBackend", "..\ViruBackend\ViruBackend.csproj", "{6ED404A8-B753-46C6-A371-883DE8C4FF72}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,10 @@ Global
 		{5D30EEC6-DFCD-40F1-A635-102681D39711}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D30EEC6-DFCD-40F1-A635-102681D39711}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5D30EEC6-DFCD-40F1-A635-102681D39711}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{6ED404A8-B753-46C6-A371-883DE8C4FF72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ED404A8-B753-46C6-A371-883DE8C4FF72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ED404A8-B753-46C6-A371-883DE8C4FF72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ED404A8-B753-46C6-A371-883DE8C4FF72}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
