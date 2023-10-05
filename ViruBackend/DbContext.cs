@@ -6,11 +6,9 @@ namespace ViruBackend
 {
     public class DbContext: Microsoft.EntityFrameworkCore.DbContext
     {
+        public DbContext(DbContextOptions<DbContext> options) : base(options) { }
+
         public DbSet<Wallet> Wallets { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseNpgsql(System.Configuration.ConfigurationManager.ConnectionStrings["default"].ConnectionString);
-        }
     }
 }
