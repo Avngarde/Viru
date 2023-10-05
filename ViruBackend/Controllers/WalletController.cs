@@ -40,13 +40,19 @@ namespace ViruBackend.Controllers
             return wallet;
         }
 
+        [Route("AddWallet")]
         [HttpPost]
-        public async Task AddWallet(Wallet newWallet)
+        public async Task AddWallet(string name)
         {
+            Wallet newWallet = new()
+            {
+                Name = name,
+            };
             await db.Wallets.AddAsync(newWallet);
             await db.SaveChangesAsync();
         }
 
+        [Route("DeleteWallet")]
         [HttpDelete]
         public async Task DeleteWallet(int id)
         {
