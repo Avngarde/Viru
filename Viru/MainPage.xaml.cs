@@ -1,4 +1,5 @@
-﻿using Viru.Dto;
+﻿using System.Collections.ObjectModel;
+using Viru.Dto;
 using Viru.Services;
 
 namespace Viru;
@@ -6,6 +7,7 @@ namespace Viru;
 public partial class MainPage : ContentPage
 {
     private WalletService walletService = new();
+    public WalletDto[] Wallets;
 
     public MainPage()
 	{
@@ -14,8 +16,13 @@ public partial class MainPage : ContentPage
 
     private async void mainPageActionButton_Clicked(object sender, EventArgs e)
     {
-        WalletDto[] wallets = await walletService.GetAllWallets();
 		string name = await DisplayPromptAsync("Add wallet", "Wallet's name:", "Add");
+    }
+
+    protected override async void OnAppearing()
+    {
+        Wallets = await walletService.GetAllWallets();
+        walletsList.ItemsSource = Wallets;
     }
 }
 
