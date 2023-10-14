@@ -17,6 +17,11 @@ public partial class MainPage : ContentPage
     private async void mainPageActionButton_Clicked(object sender, EventArgs e)
     {
 		string name = await DisplayPromptAsync("Add wallet", "Wallet's name:", "Add");
+        await walletService.AddWallet(name);
+
+        //Refresh walletsList
+        Wallets = await walletService.GetAllWallets();
+        walletsList.ItemsSource = Wallets;
     }
 
     protected override async void OnAppearing()
