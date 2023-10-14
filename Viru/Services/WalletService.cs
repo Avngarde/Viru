@@ -28,5 +28,15 @@ namespace Viru.Services
             Console.WriteLine("GetAll Status: " + response.StatusCode);
             return await response.Content.ReadFromJsonAsync<WalletDto[]>();
         }
+
+        public async Task AddWallet(string name)
+        {
+            AddWalletDto addWalletDto = new AddWalletDto() { Name = name };
+
+            JsonContent jsonContent = JsonContent.Create(addWalletDto);
+            using HttpResponseMessage response = await client.PostAsync(client.BaseAddress + "Wallet/AddWallet", 
+                jsonContent);
+            Console.WriteLine("AddWallet Status" + response.StatusCode);
+        }
     }
 }

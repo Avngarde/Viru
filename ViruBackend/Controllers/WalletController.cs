@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
+using ViruBackend.Dto;
 using ViruBackend.Models;
 
 namespace ViruBackend.Controllers
@@ -42,11 +43,11 @@ namespace ViruBackend.Controllers
 
         [Route("AddWallet")]
         [HttpPost]
-        public async Task AddWallet(string name)
+        public async Task AddWallet([FromBody]AddWalletDto addWalletDto)
         {
             Wallet newWallet = new()
             {
-                Name = name,
+                Name = addWalletDto.Name,
             };
             await db.Wallets.AddAsync(newWallet);
             await db.SaveChangesAsync();
