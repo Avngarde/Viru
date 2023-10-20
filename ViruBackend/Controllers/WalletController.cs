@@ -48,6 +48,7 @@ namespace ViruBackend.Controllers
             Wallet newWallet = new()
             {
                 Name = addWalletDto.Name,
+                Created = addWalletDto.Created
             };
             await db.Wallets.AddAsync(newWallet);
             await db.SaveChangesAsync();
