@@ -31,7 +31,7 @@ namespace Viru.Services
 
         public async Task AddWallet(string name)
         {
-            AddWalletDto addWalletDto = new AddWalletDto() { Name = name };
+            AddWalletDto addWalletDto = new AddWalletDto() { Name = name, Created = DateTime.UtcNow };
 
             JsonContent jsonContent = JsonContent.Create(addWalletDto);
             using HttpResponseMessage response = await client.PostAsync(client.BaseAddress + "Wallet/AddWallet", 
