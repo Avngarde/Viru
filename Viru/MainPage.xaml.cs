@@ -17,6 +17,7 @@ public partial class MainPage : ContentPage
     private async void mainPageActionButton_Clicked(object sender, EventArgs e)
     {
 		string name = await DisplayPromptAsync("Add wallet", "Wallet's name:", "Add");
+        if (name == null || name.Trim() == "") return;
         await walletService.AddWallet(name);
 
         //Refresh walletsList
