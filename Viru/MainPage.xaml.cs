@@ -30,5 +30,14 @@ public partial class MainPage : ContentPage
         Wallets = await walletService.GetAllWallets();
         walletsList.ItemsSource = Wallets;
     }
+
+    private async void DeleteMenuItem_Clicked(object sender, EventArgs e)
+    {
+        MenuItem menuItem = sender as MenuItem;
+        int id = (int)menuItem.CommandParameter;
+        await walletService.DeleteWallet(id);
+        Wallets = await walletService.GetAllWallets();
+        walletsList.ItemsSource = Wallets;
+    }
 }
 

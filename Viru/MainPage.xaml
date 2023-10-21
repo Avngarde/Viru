@@ -10,7 +10,7 @@
                     <ViewCell>
                         <ViewCell.ContextActions>
                             <MenuItem Text="Edit" />
-                            <MenuItem Text="Delete" />
+                            <MenuItem x:Name="DeleteMenuItem" Text="Delete" Clicked="DeleteMenuItem_Clicked"  CommandParameter="{Binding Id}" />
                         </ViewCell.ContextActions>
                         <Border BackgroundColor="#07393C" Padding="10" Stroke="#F0EDEE">
                             <Border.StrokeShape>

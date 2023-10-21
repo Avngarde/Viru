@@ -54,7 +54,7 @@ namespace ViruBackend.Controllers
             await db.SaveChangesAsync();
         }
 
-        [Route("DeleteWallet")]
+        [Route("DeleteWallet/{id:int}")]
         [HttpDelete]
         public async Task DeleteWallet(int id)
         {
