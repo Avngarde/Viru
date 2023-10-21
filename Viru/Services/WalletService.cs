@@ -38,5 +38,11 @@ namespace Viru.Services
                 jsonContent);
             Console.WriteLine("AddWallet Status" + response.StatusCode);
         }
+
+        public async Task DeleteWallet(int id)
+        {
+            using HttpResponseMessage response = await client.DeleteAsync(client.BaseAddress + $"Wallet/DeleteWallet/{id}");
+            Console.WriteLine("DeleteWallet Status" + response.StatusCode);
+        }
     }
 }
