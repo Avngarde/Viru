@@ -39,5 +39,11 @@ public partial class MainPage : ContentPage
         Wallets = await walletService.GetAllWallets();
         walletsList.ItemsSource = Wallets;
     }
+
+    private async void walletsList_ItemTapped(object sender, ItemTappedEventArgs e)
+    {
+        WalletDto wallet = e.Item as WalletDto;
+        await DisplayAlert("Tapped", $"Selected wallet: {wallet.Name}", "Okey");
+    }
 }
 

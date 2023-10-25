@@ -5,7 +5,7 @@
              x:Class="Viru.MainPage">
 
     <Grid>
-        <ListView x:Name="walletsList" RowHeight="55" Margin="5, 20, 5, 0" SelectionMode="None" SeparatorVisibility="None" HasUnevenRows="True">
+        <ListView x:Name="walletsList" RowHeight="55" Margin="5, 20, 5, 0" SelectionMode="None" SeparatorVisibility="None" HasUnevenRows="True" ItemTapped="walletsList_ItemTapped">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -19,10 +19,10 @@
                             </Border.StrokeShape>
                             <Border.Shadow>
                                 <Shadow Brush="#2f2f2f"
-                   Offset="1,1"
-                   Radius="0"
-                   Opacity="0.3"/>
-                            </Border.Shadow>                        
+                                   Offset="1,1"
+                                   Radius="0"
+                                   Opacity="0.3"/>
+                            </Border.Shadow>
                             <Grid>
                                 <Label Text="{Binding Name}" Grid.Column="0" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="18"></Label>
                             </Grid>
@@ -43,7 +43,7 @@
                 <Button.Shadow>
                     <Shadow Brush="Black"
                 Offset="5,5"
-                Opacity="0.4" />
+                Opacity="1" />
                 </Button.Shadow>
             </Button>
         </AbsoluteLayout>
