@@ -9,6 +9,7 @@ namespace ViruBackend
         public DbContext(DbContextOptions<DbContext> options) : base(options) { }
 
         public DbSet<Wallet> Wallets { get; set; }
+        public DbSet<Payment> Payments { get; set; }
 
     }
 }
