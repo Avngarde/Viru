@@ -8,11 +8,12 @@ public partial class MainPage : ContentPage
 {
     private WalletService walletService = new();
     public WalletDto[] Wallets;
+    private bool ifPaymentPageOpened = false;
 
     public MainPage()
 	{
 		InitializeComponent();
-	}
+    }
 
     private async void mainPageActionButton_Clicked(object sender, EventArgs e)
     {
@@ -27,8 +28,12 @@ public partial class MainPage : ContentPage
 
     protected override async void OnAppearing()
     {
-        Wallets = await walletService.GetAllWallets();
-        walletsList.ItemsSource = Wallets;
+        if (!ifPaymentPageOpened)
+        {
+            Wallets = await walletService.GetAllWallets();
+            walletsList.ItemsSource = Wallets;
+            ifPaymentPageOpened = false;
+        }
     }
 
     private async void DeleteMenuItem_Clicked(object sender, EventArgs e)
@@ -43,7 +48,9 @@ public partial class MainPage : ContentPage
     private async void walletsList_ItemTapped(object sender, ItemTappedEventArgs e)
     {
         WalletDto wallet = e.Item as WalletDto;
-        await DisplayAlert("Tapped", $"Selected wallet: {wallet.Name}", "Okey");
+        PaymentPage paymentPage = new PaymentPage(wallet);
+        ifPaymentPageOpened = true;
+        await Navigation.PushAsync(paymentPage);
     }
 }
 
