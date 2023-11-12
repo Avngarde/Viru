@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Viru.AddPaymentPage"
+             Title="AddPaymentPage">
+
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="0,1">
+            <GradientStop Color="{StaticResource Primary}" Offset="0.1" />
+            <GradientStop Color="{StaticResource Tertiary}" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <VerticalStackLayout>
+        <Button Text="X" HorizontalOptions="Start" />
+        
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50*" />
+                <RowDefinition Height="50*" />
+            </Grid.RowDefinitions>
+            <Label Text="Description" TextColor="LightGray" FontSize="18" VerticalTextAlignment="Center" Margin="10" Grid.Row="0" />
+            <Border Grid.Row="1" StrokeShape="RoundRectangle 10" BackgroundColor="{StaticResource Secondary}" Stroke="{StaticResource Secondary}" Margin="10, 0, 10, 0">
+                <Entry Placeholder="Ex. (Fuel, Monthly pass)" TextColor="White" />
+            </Border>
+        </Grid>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50*" />
+                <ColumnDefinition Width="50*" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50*" />
+                    <RowDefinition Height="50*" />
+                </Grid.RowDefinitions>
+                <Label Text="Value" TextColor="LightGray" FontSize="18" VerticalTextAlignment="Center" Margin="10" Grid.Row="0" />
+                <Border Grid.Row="1" StrokeShape="RoundRectangle 10" BackgroundColor="{StaticResource Secondary}" Stroke="{StaticResource Secondary}" Margin="10, 0, 10, 0">
+                    <Entry Placeholder="0" TextColor="White" Keyboard="Numeric" />
+                </Border>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50*" />
+                    <RowDefinition Height="50*" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="25*" />
+                        <ColumnDefinition Width="25*" />
+                        <ColumnDefinition Width="25*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" TextColor="White" VerticalOptions="Center" HorizontalOptions="End">Income</Label>
+                    <Switch Grid.Column="1"  VerticalOptions="Center" HorizontalOptions="Center" OnColor="Red" ThumbColor="White" />
+                    <Label Grid.Column="2" TextColor="White" VerticalOptions="Center">Expense</Label>
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <Button Text="Add!" BackgroundColor="{StaticResource Tertiary}" Margin="10, 30, 10, 10">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+                                   Offset="1,1"
+                                   Radius="2"
+                                   Opacity="1"/>
+            </Button.Shadow>
+        </Button>
+
+    </VerticalStackLayout>
+    
+</ContentPage>

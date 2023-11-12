@@ -8,6 +8,7 @@ public partial class PaymentPage : ContentPage
 	private int WalletId;
 	public List<PaymentListModel> paymentList = new();
     private PaymentService paymentService = new PaymentService();
+	private bool isAddPageOpen = false;
 
     public PaymentPage(WalletDto wallet)
 	{
@@ -19,8 +20,12 @@ public partial class PaymentPage : ContentPage
 
     protected override async void OnAppearing()
     {
-		paymentList = await GetPayments();
-		payments.ItemsSource = paymentList;
+		if (!isAddPageOpen)
+		{
+			paymentList = await GetPayments();
+			payments.ItemsSource = paymentList;
+			isAddPageOpen = false;
+		}
     }
 
 	private async Task<List<PaymentListModel>> GetPayments()
@@ -42,7 +47,13 @@ public partial class PaymentPage : ContentPage
 		return paymentTemp;
 	}
 
-	public class PaymentListModel
+    private async void addPaymentButton_Clicked(object sender, EventArgs e)
+    {
+        isAddPageOpen = true;
+        await Navigation.PushModalAsync(new AddPaymentPage(), true);
+    }
+
+    public class PaymentListModel
 	{
 		public int Id { get; set; }
 		public string Description { get; set; }
