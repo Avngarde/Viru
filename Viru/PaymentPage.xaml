@@ -6,7 +6,7 @@
     <Shell.TitleView>
         <Grid ColumnDefinitions="80*,18*,18*">
             <Label x:Name="TitleBarText" HorizontalOptions="Start" FontSize="18" FontAttributes="Bold" TextColor="White" Grid.Column="0" VerticalTextAlignment="Center" />
-            <Button Text="+" Grid.Column="1" FontSize="Large" HorizontalOptions="End"/>
+            <Button x:Name="addPaymentButton" Text="+" Grid.Column="1" FontSize="Large" HorizontalOptions="End" Clicked="addPaymentButton_Clicked" />
             <Button Text="◢" Grid.Column="2" FontSize="Large" HorizontalOptions="Start" />
         </Grid>        
     </Shell.TitleView>

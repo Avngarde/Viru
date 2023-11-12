@@ -57,6 +57,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="AddPaymentPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="AddWalletPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
