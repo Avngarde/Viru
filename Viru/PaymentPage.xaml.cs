@@ -32,7 +32,7 @@ public partial class PaymentPage : ContentPage
 			paymentTemp.Add(
 				new PaymentListModel()
 				{
-					PaymentColor = payment.Value < 0 ? Color.FromArgb("#cc0000") : Color.FromArgb("#2e8b57"),
+					PaymentColor = payment.Value < 0 ? Color.FromArgb("#D62828") : Color.FromArgb("#2e8b57"),
 					Description = payment.Description,
 					PaymentCurrency = $"{payment.Value} {payment.Currency}"
                 }
