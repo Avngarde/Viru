@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" Background="{StaticResource Primary}"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" Background="{StaticResource Tertiary}"
              x:Class="Viru.PaymentPage">
 
     <Shell.TitleView>
@@ -12,30 +12,41 @@
     </Shell.TitleView>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="60*" />
+            <RowDefinition Height="70*" />
             <RowDefinition Height="40*" />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" BackgroundColor="{StaticResource Primary}">
+        <Grid Grid.Row="0">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0,1">
+                    <GradientStop Color="{StaticResource Primary}" Offset="0.1" />
+                    <GradientStop Color="{StaticResource Tertiary}" Offset="1.0" />
+                </LinearGradientBrush>
+            </Grid.Background>
             <Grid>
-                <Label Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="50" TextColor="#cc0000">-10000 PLN</Label>
+                <Label Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="50" FontAttributes="Bold" TextColor="#31E981">+200 PLN</Label>
             </Grid>
         </Grid>
 
-        <Border Grid.Row="1" StrokeShape="RoundRectangle 20,20,0,0" Stroke="White" StrokeThickness="0" BackgroundColor="White">
+        <Border Grid.Row="1" StrokeShape="RoundRectangle 40,40,0,0" Stroke="White" StrokeThickness="0" BackgroundColor="White">
+            <Border.Shadow>
+                <Shadow Brush="Black"
+                Offset="0.1,0.1"
+                Opacity="1" />
+            </Border.Shadow>
             <ListView x:Name="payments" Grid.Row="0" RowHeight="55" Margin="5, 20, 5, 0" SelectionMode="None" SeparatorVisibility="None" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Border BackgroundColor="White" Padding="8" Stroke="{Binding PaymentColor}" Margin="10, 10, 0, 10">
+                            <Border BackgroundColor="White" Padding="12" Stroke="#F0EDEE" Margin="15, 5, 15, 5">
                                 <Border.StrokeShape>
                                     <RoundRectangle CornerRadius="5,5,5,5" />
                                 </Border.StrokeShape>
                                 <Border.Shadow>
                                     <Shadow Brush="{Binding PaymentColor}"
                                    Offset="1,1"
-                                   Radius="10"
-                                   Opacity="0.3"/>
+                                   Radius="2"
+                                   Opacity="1"/>
                                 </Border.Shadow>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
