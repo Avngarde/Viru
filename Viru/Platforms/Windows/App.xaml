@@ -6,3 +6,15 @@
     xmlns:local="using:Viru.WinUI">
 
 </maui:MauiWinUIApplication>
+
+<maui:MauiWinUIApplication.Resources>
+    <ResourceDictionary>
+        <Color x:Key="Primary">#500073</Color>
+        <StaticResource x:Key="SystemAccentColorDark1" ResourceKey="Primary"/>
+        <StaticResource x:Key="SystemAccentColorDark2" ResourceKey="Primary"/>
+        <StaticResource x:Key="SystemAccentColorDark3" ResourceKey="Primary"/>
+        <StaticResource x:Key="SystemAccentColorLight1" ResourceKey="Primary"/>
+        <StaticResource x:Key="SystemAccentColorLight2" ResourceKey="Primary"/>
+        <StaticResource x:Key="SystemAccentColorLight3" ResourceKey="Primary"/>
+    </ResourceDictionary>
+</maui:MauiWinUIApplication.Resources>
