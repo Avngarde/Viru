@@ -39,6 +39,7 @@ public partial class PaymentPage : ContentPage
                 }
 			);
 		}
+		SummarizePayments(payments);
 
 		return paymentTemp;
 	}
@@ -51,6 +52,26 @@ public partial class PaymentPage : ContentPage
         paymentList = await GetPayments();
         payments.ItemsSource = paymentList;
     }
+
+	private void SummarizePayments(PaymentDto[] payments)
+	{
+		float sum = 0;
+		foreach (PaymentDto payment in payments)
+		{
+			sum += payment.Value;
+		}
+
+		if (sum >= 0) 
+		{
+			summaryLabel.Text = $"+{sum}";
+			summaryLabel.TextColor = Color.FromArgb("#31E981");
+		}
+		else
+		{
+            summaryLabel.Text = $"{sum}";
+            summaryLabel.TextColor = Color.FromArgb("#FF0000");
+        }
+	}
 
     public class PaymentListModel
 	{
