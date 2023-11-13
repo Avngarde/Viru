@@ -34,7 +34,7 @@
                 Offset="0.1,0.1"
                 Opacity="1" />
             </Border.Shadow>
-            <ListView x:Name="payments" Grid.Row="0" RowHeight="55" Margin="5, 20, 5, 0" SelectionMode="None" SeparatorVisibility="None" HasUnevenRows="True">
+            <ListView x:Name="payments" Grid.Row="0" RowHeight="55" Margin="5, 20, 5, 0" SelectionMode="None" SeparatorVisibility="None" HasUnevenRows="True" CachingStrategy="RecycleElement">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

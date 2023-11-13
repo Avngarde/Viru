@@ -10,7 +10,7 @@ namespace Viru.Dto
     {
         public string? Description { get; set; }
         public string? Currency { get; set; }
-        public int Value { get; set; }
+        public float Value { get; set; }
         public int WalletId { get; set; }
     }
 }
