@@ -12,7 +12,7 @@
     </ContentPage.Background>
 
     <VerticalStackLayout>
-        <Button Text="X" HorizontalOptions="Start" />
+        <Button x:Name="exitButton" Text="X" HorizontalOptions="Start" Clicked="exitButton_Clicked" />
         
         <Grid>
             <Grid.RowDefinitions>
@@ -20,8 +20,8 @@
                 <RowDefinition Height="50*" />
             </Grid.RowDefinitions>
             <Label Text="Description" TextColor="LightGray" FontSize="18" VerticalTextAlignment="Center" Margin="10" Grid.Row="0" />
-            <Frame Grid.Row="1" Margin="10, 0, 10, 0" BackgroundColor="{StaticResource Secondary}">
-                <Entry Placeholder="Ex. (Fuel, Monthly pass)" TextColor="White" VerticalOptions="Center" />
+            <Frame x:Name="descriptionFrame" Grid.Row="1" Margin="10, 0, 10, 0" BackgroundColor="{StaticResource Secondary}">
+                <Entry x:Name="descriptionEntry" Placeholder="Ex. (Fuel, Monthly pass)" TextColor="White" VerticalOptions="Center" TextChanged="descriptionEntry_TextChanged" />
             </Frame>
         </Grid>
 
@@ -36,8 +36,8 @@
                     <RowDefinition Height="50*" />
                 </Grid.RowDefinitions>
                 <Label Text="Value" TextColor="LightGray" FontSize="18" VerticalTextAlignment="Center" Margin="10" Grid.Row="0" />
-                <Frame Grid.Row="1" Margin="10, 0, 10, 0" BackgroundColor="{StaticResource Secondary}">
-                    <Entry Placeholder="0" TextColor="White" Keyboard="Numeric" VerticalOptions="Center" />
+                <Frame x:Name="valueFrame" Grid.Row="1" Margin="10, 0, 10, 0" BackgroundColor="{StaticResource Secondary}">
+                    <Entry x:Name="valueEntry" Placeholder="0" TextColor="White" Keyboard="Numeric" VerticalOptions="Center" TextChanged="valueEntry_TextChanged" />
                 </Frame>
             </Grid>
             <Grid Grid.Column="1">
@@ -52,13 +52,13 @@
                         <ColumnDefinition Width="25*" />
                     </Grid.ColumnDefinitions>
                     <Label Grid.Column="0" TextColor="White" VerticalOptions="Center" HorizontalOptions="End">Income</Label>
-                    <Switch Grid.Column="1"  VerticalOptions="Center" HorizontalOptions="Center" OnColor="Red" ThumbColor="White" />
+                    <Switch x:Name="typeSwitch" Grid.Column="1"  VerticalOptions="Center" HorizontalOptions="Center" OnColor="Red" ThumbColor="White" Toggled="typeSwitch_Toggled" />
                     <Label Grid.Column="2" TextColor="White" VerticalOptions="Center">Expense</Label>
                 </Grid>
             </Grid>
         </Grid>
 
-        <Button Text="Add!" BackgroundColor="{StaticResource Tertiary}" Margin="10, 30, 10, 10">
+        <Button x:Name="addPaymentButton" Text="Add!" BackgroundColor="{StaticResource Tertiary}" Margin="10, 30, 10, 10" Clicked="addPaymentButton_Clicked">
             <Button.Shadow>
                 <Shadow Brush="Black"
                                    Offset="1,1"

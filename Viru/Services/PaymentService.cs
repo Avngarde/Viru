@@ -24,7 +24,7 @@ namespace Viru.Services
             return await response.Content.ReadFromJsonAsync<PaymentDto[]>();
         }
 
-        public async Task AddWallet(string description, string currency, int value, int walletId)
+        public async Task AddPayment(string description, string currency, float value, int walletId)
         {
             AddPaymentDto addPaymentDto = new AddPaymentDto()
             {
@@ -40,7 +40,7 @@ namespace Viru.Services
             Console.WriteLine("AddWallet Status" + response.StatusCode);
         }
 
-        public async Task DeleteWallet(int id)
+        public async Task DeletePayment(int id)
         {
             using HttpResponseMessage response = await client.DeleteAsync(client.BaseAddress + $"Payment/DeletePayment/{id}");
             Console.WriteLine("DeleteWallet Status" + response.StatusCode);

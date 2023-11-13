@@ -20,12 +20,8 @@ public partial class PaymentPage : ContentPage
 
     protected override async void OnAppearing()
     {
-		if (!isAddPageOpen)
-		{
-			paymentList = await GetPayments();
-			payments.ItemsSource = paymentList;
-			isAddPageOpen = false;
-		}
+		paymentList = await GetPayments();
+		payments.ItemsSource = paymentList;
     }
 
 	private async Task<List<PaymentListModel>> GetPayments()
@@ -50,7 +46,10 @@ public partial class PaymentPage : ContentPage
     private async void addPaymentButton_Clicked(object sender, EventArgs e)
     {
         isAddPageOpen = true;
-        await Navigation.PushModalAsync(new AddPaymentPage(), true);
+		await Navigation.PushModalAsync(new AddPaymentPage(WalletId), true);
+		isAddPageOpen = false;
+        paymentList = await GetPayments();
+        payments.ItemsSource = paymentList;
     }
 
     public class PaymentListModel
