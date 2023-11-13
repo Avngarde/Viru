@@ -24,7 +24,7 @@
                 </LinearGradientBrush>
             </Grid.Background>
             <Grid>
-                <Label Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="50" FontAttributes="Bold" TextColor="#31E981">+200 PLN</Label>
+                <Label x:Name="summaryLabel" Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="50" FontAttributes="Bold" TextColor="#31E981"></Label>
             </Grid>
         </Grid>
 
