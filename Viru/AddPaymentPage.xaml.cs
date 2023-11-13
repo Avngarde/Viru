@@ -72,6 +72,12 @@ public partial class AddPaymentPage : ContentPage
         return true;
     }
 
+    private void HideKeyboard()
+    {
+        valueEntry.IsEnabled = false;
+        descriptionEntry.IsEnabled = false;
+    }
+
     private async void addPaymentButton_Clicked(object sender, EventArgs e)
     {
         if (InputsCorrect())
@@ -79,6 +85,7 @@ public partial class AddPaymentPage : ContentPage
             value = Math.Abs(value);
             if (isExpense) value = value - (value * 2);
             await paymentService.AddPayment(description, "", value, walletId);
+            HideKeyboard();
             await DisplayAlert("Success", "Payment added!", "Ok");
             await Navigation.PopModalAsync();
         }
