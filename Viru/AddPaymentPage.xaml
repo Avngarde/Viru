@@ -20,9 +20,9 @@
                 <RowDefinition Height="50*" />
             </Grid.RowDefinitions>
             <Label Text="Description" TextColor="LightGray" FontSize="18" VerticalTextAlignment="Center" Margin="10" Grid.Row="0" />
-            <Border Grid.Row="1" StrokeShape="RoundRectangle 10" BackgroundColor="{StaticResource Secondary}" Stroke="{StaticResource Secondary}" Margin="10, 0, 10, 0">
-                <Entry Placeholder="Ex. (Fuel, Monthly pass)" TextColor="White" />
-            </Border>
+            <Frame Grid.Row="1" Margin="10, 0, 10, 0" BackgroundColor="{StaticResource Secondary}">
+                <Entry Placeholder="Ex. (Fuel, Monthly pass)" TextColor="White" VerticalOptions="Center" />
+            </Frame>
         </Grid>
 
         <Grid>
@@ -36,9 +36,9 @@
                     <RowDefinition Height="50*" />
                 </Grid.RowDefinitions>
                 <Label Text="Value" TextColor="LightGray" FontSize="18" VerticalTextAlignment="Center" Margin="10" Grid.Row="0" />
-                <Border Grid.Row="1" StrokeShape="RoundRectangle 10" BackgroundColor="{StaticResource Secondary}" Stroke="{StaticResource Secondary}" Margin="10, 0, 10, 0">
-                    <Entry Placeholder="0" TextColor="White" Keyboard="Numeric" />
-                </Border>
+                <Frame Grid.Row="1" Margin="10, 0, 10, 0" BackgroundColor="{StaticResource Secondary}">
+                    <Entry Placeholder="0" TextColor="White" Keyboard="Numeric" VerticalOptions="Center" />
+                </Frame>
             </Grid>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
