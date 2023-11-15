@@ -28,7 +28,6 @@ public partial class PaymentPage : ContentPage
 	{
 		List<PaymentListModel> paymentTemp = new();
 		PaymentDto[] payments = await paymentService.GetPayments(WalletId);
-		float total = 0;
 		foreach (PaymentDto payment in payments)
 		{
 			paymentTemp.Add(
