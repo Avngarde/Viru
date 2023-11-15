@@ -44,7 +44,7 @@ namespace ViruBackend.Controllers
             db.SaveChanges();
         }
 
-        [Route("DeletePayment/{id:int}")]
+        [Route("DeletePayment/{paymentId:int}")]
         [HttpDelete]
         public void DeletePayment(int paymentId)
         {

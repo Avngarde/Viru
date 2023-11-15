@@ -38,6 +38,10 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Edit" />
+                                <MenuItem x:Name="DeleteMenuItem" Text="Delete" Clicked="DeleteMenuItem_Clicked" CommandParameter="{Binding Id}" />
+                            </ViewCell.ContextActions>
                             <Border BackgroundColor="White" Padding="12" Stroke="#F0EDEE" Margin="15, 5, 15, 5">
                                 <Border.StrokeShape>
                                     <RoundRectangle CornerRadius="5,5,5,5" />
