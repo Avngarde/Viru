@@ -28,11 +28,13 @@ public partial class PaymentPage : ContentPage
 	{
 		List<PaymentListModel> paymentTemp = new();
 		PaymentDto[] payments = await paymentService.GetPayments(WalletId);
+		float total = 0;
 		foreach (PaymentDto payment in payments)
 		{
 			paymentTemp.Add(
 				new PaymentListModel()
 				{
+					Id = payment.Id,
 					PaymentColor = payment.Value < 0 ? Color.FromArgb("#D62828") : Color.FromArgb("#2e8b57"),
 					Description = payment.Description,
 					PaymentCurrency = $"{payment.Value} {payment.Currency}"
@@ -72,6 +74,15 @@ public partial class PaymentPage : ContentPage
             summaryLabel.TextColor = Color.FromArgb("#FF0000");
         }
 	}
+
+    private async void DeleteMenuItem_Clicked(object sender, EventArgs e)
+    {
+        MenuItem menuItem = sender as MenuItem;
+        int id = (int)menuItem.CommandParameter;
+        await paymentService.DeletePayment(id);
+        OnAppearing();
+		await DisplayAlert("Success", "Payment deleted succesfully", "Ok");
+    }
 
     public class PaymentListModel
 	{
