@@ -12,8 +12,8 @@
     </Shell.TitleView>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="70*" />
-            <RowDefinition Height="40*" />
+            <RowDefinition Height="85*" />
+            <RowDefinition Height="23*" />
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
@@ -24,7 +24,7 @@
                 </LinearGradientBrush>
             </Grid.Background>
             <Grid>
-                <Label x:Name="summaryLabel" Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="50" FontAttributes="Bold" TextColor="#31E981"></Label>
+                <Label x:Name="summaryLabel" Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="70" FontAttributes="Bold" TextColor="#31E981"></Label>
             </Grid>
         </Grid>
 
