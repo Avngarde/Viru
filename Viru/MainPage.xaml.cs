@@ -9,6 +9,7 @@ public partial class MainPage : ContentPage
     private WalletService walletService = new();
     public WalletDto[] Wallets;
     private bool ifPaymentPageOpened = false;
+    private bool ifAddWalletPageOpened = false;
 
     public MainPage()
 	{
@@ -17,9 +18,7 @@ public partial class MainPage : ContentPage
 
     private async void mainPageActionButton_Clicked(object sender, EventArgs e)
     {
-		string name = await DisplayPromptAsync("Add wallet", "Wallet's name:", "Add");
-        if (name == null || name.Trim() == "") return;
-        await walletService.AddWallet(name);
+        await Navigation.PushModalAsync(new AddWalletPage(), true);
 
         //Refresh walletsList
         Wallets = await walletService.GetAllWallets();
@@ -28,7 +27,7 @@ public partial class MainPage : ContentPage
 
     protected override async void OnAppearing()
     {
-        if (!ifPaymentPageOpened)
+        if (!ifPaymentPageOpened && !ifAddWalletPageOpened)
         {
             Wallets = await walletService.GetAllWallets();
             walletsList.ItemsSource = Wallets;

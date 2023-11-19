@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
@@ -29,9 +30,9 @@ namespace Viru.Services
             return await response.Content.ReadFromJsonAsync<WalletDto[]>();
         }
 
-        public async Task AddWallet(string name)
+        public async Task AddWallet(string name, Microsoft.Maui.Graphics.Color color)
         {
-            AddWalletDto addWalletDto = new AddWalletDto() { Name = name, Created = DateTime.UtcNow };
+            AddWalletDto addWalletDto = new AddWalletDto() { Name = name, Created = DateTime.UtcNow, Color = color.ToRgbaHex(), TotalBalance = 0 };
 
             JsonContent jsonContent = JsonContent.Create(addWalletDto);
             using HttpResponseMessage response = await client.PostAsync(client.BaseAddress + "Wallet/AddWallet", 
