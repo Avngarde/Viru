@@ -32,7 +32,8 @@ namespace Viru.Services
 
         public async Task AddWallet(string name, Microsoft.Maui.Graphics.Color color)
         {
-            AddWalletDto addWalletDto = new AddWalletDto() { Name = name, Created = DateTime.UtcNow, Color = color.ToRgbaHex(), TotalBalance = 0 };
+            string colorHTML = color.ToRgbaHex();
+            AddWalletDto addWalletDto = new AddWalletDto() { Name = name, Created = DateTime.UtcNow, Color = colorHTML, TotalBalance = 0 };
 
             JsonContent jsonContent = JsonContent.Create(addWalletDto);
             using HttpResponseMessage response = await client.PostAsync(client.BaseAddress + "Wallet/AddWallet", 
