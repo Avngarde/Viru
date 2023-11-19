@@ -7,7 +7,7 @@ namespace Viru;
 public partial class MainPage : ContentPage
 {
     private WalletService walletService = new();
-    public WalletDto[] Wallets;
+    public WalletsListModel[] Wallets;
     private bool ifPaymentPageOpened = false;
     private bool ifAddWalletPageOpened = false;
 
@@ -21,7 +21,7 @@ public partial class MainPage : ContentPage
         await Navigation.PushModalAsync(new AddWalletPage(), true);
 
         //Refresh walletsList
-        Wallets = await walletService.GetAllWallets();
+        Wallets = await GetWallets();
         walletsList.ItemsSource = Wallets;
     }
 
@@ -29,7 +29,7 @@ public partial class MainPage : ContentPage
     {
         if (!ifPaymentPageOpened && !ifAddWalletPageOpened)
         {
-            Wallets = await walletService.GetAllWallets();
+            Wallets = await GetWallets();
             walletsList.ItemsSource = Wallets;
             ifPaymentPageOpened = false;
         }
@@ -40,16 +40,43 @@ public partial class MainPage : ContentPage
         MenuItem menuItem = sender as MenuItem;
         int id = (int)menuItem.CommandParameter;
         await walletService.DeleteWallet(id);
-        Wallets = await walletService.GetAllWallets();
+        Wallets = await GetWallets();
         walletsList.ItemsSource = Wallets;
     }
 
     private async void walletsList_ItemTapped(object sender, ItemTappedEventArgs e)
     {
-        WalletDto wallet = e.Item as WalletDto;
+        WalletsListModel wallet = e.Item as WalletsListModel;
         PaymentPage paymentPage = new PaymentPage(wallet);
         ifPaymentPageOpened = true;
         await Navigation.PushAsync(paymentPage);
     }
+
+    private async Task<WalletsListModel[]> GetWallets()
+    {
+        List<WalletsListModel> walletLists = new();
+        WalletDto[] walletDtoList;
+        walletDtoList = await walletService.GetAllWallets();
+        foreach(WalletDto walletDto in walletDtoList)
+        {
+            walletLists.Add(new WalletsListModel()
+            {
+                Id = walletDto.Id,
+                Name = walletDto.Name,
+                Color = Color.FromArgb(walletDto.Color),
+                TotalBalance = walletDto.TotalBalance,
+            });
+        }
+
+        return walletLists.ToArray();
+    }
+}
+
+public class WalletsListModel
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public Color Color { get; set; }
+    public float TotalBalance { get; set; }
 }
 
