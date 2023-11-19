@@ -59,16 +59,28 @@ public partial class MainPage : ContentPage
         walletDtoList = await walletService.GetAllWallets();
         foreach(WalletDto walletDto in walletDtoList)
         {
+            Color background = Color.FromArgb(walletDto.Color);
+            Color text = DetermineTextColor(background);
             walletLists.Add(new WalletsListModel()
             {
                 Id = walletDto.Id,
                 Name = walletDto.Name,
-                Color = Color.FromArgb(walletDto.Color),
+                Color = background,
+                TextColor = text,
                 TotalBalance = walletDto.TotalBalance,
             });
         }
 
         return walletLists.ToArray();
+    }
+
+    private Color DetermineTextColor(Color backgroundColor)
+    {
+        var argbValue = (backgroundColor.Red * 0.2126 + backgroundColor.Green * 0.7152 + backgroundColor.Blue * 0.0722);
+        if (argbValue > 0.255)
+            return Color.FromArgb("#000000");
+        else
+            return Color.FromArgb("#F0EDEE");
     }
 }
 
@@ -77,6 +89,7 @@ public class WalletsListModel
     public int Id { get; set; }
     public string Name { get; set; }
     public Color Color { get; set; }
+    public Color TextColor { get; set; }
     public float TotalBalance { get; set; }
 }
 

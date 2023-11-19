@@ -31,7 +31,7 @@
                                    Opacity="0.3"/>
                             </Border.Shadow>
                             <Grid>
-                                <Label Text="{Binding Name}" Grid.Column="0" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="18"></Label>
+                                <Label Text="{Binding Name}" Grid.Column="0" TextColor="{Binding TextColor}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="18"></Label>
                             </Grid>
                         </Border>
                     </ViewCell>
