@@ -10,7 +10,7 @@ public partial class PaymentPage : ContentPage
     private PaymentService paymentService = new PaymentService();
 	private bool isAddPageOpen = false;
 
-    public PaymentPage(WalletDto wallet)
+    public PaymentPage(WalletsListModel wallet)
 	{
 		Title = wallet.Name;
 		WalletId = wallet.Id;
