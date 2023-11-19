@@ -12,7 +12,7 @@
         </LinearGradientBrush>
     </ContentPage.Background>
     <Grid>
-        <ListView x:Name="walletsList" RowHeight="55" Margin="5, 20, 5, 0" SelectionMode="None" SeparatorVisibility="None" HasUnevenRows="True" ItemTapped="walletsList_ItemTapped">
+        <ListView x:Name="walletsList" RowHeight="55" Margin="5, 20, 5, 0" SelectionMode="None" SeparatorVisibility="None" HasUnevenRows="True" ItemTapped="walletsList_ItemTapped" CachingStrategy="RecycleElement">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
