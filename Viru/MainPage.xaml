@@ -20,7 +20,7 @@
                             <MenuItem Text="Edit" />
                             <MenuItem x:Name="DeleteMenuItem" Text="Delete" Clicked="DeleteMenuItem_Clicked"  CommandParameter="{Binding Id}" />
                         </ViewCell.ContextActions>
-                        <Border BackgroundColor="{Binding Color}" Padding="15" Stroke="#F0EDEE" Margin="0, 0, 0, 10">
+                        <Border BackgroundColor="{Binding Color}" Padding="15" Stroke="{Binding Color}" Margin="0, 0, 0, 10">
                             <Border.StrokeShape>
                                 <RoundRectangle CornerRadius="5,5,5,5" />
                             </Border.StrokeShape>
