@@ -7,8 +7,8 @@
 
     <ContentPage.Background>
         <LinearGradientBrush EndPoint="0,1">
-            <GradientStop Color="{StaticResource Primary}" Offset="0.1" />
-            <GradientStop Color="{StaticResource Tertiary}" Offset="1.0" />
+            <GradientStop Color="{StaticResource Secondary}" Offset="0.1" />
+            <GradientStop Color="{StaticResource Primary}" Offset="1.0" />
         </LinearGradientBrush>
     </ContentPage.Background>
     <Grid>
