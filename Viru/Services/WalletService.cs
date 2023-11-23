@@ -41,6 +41,14 @@ namespace Viru.Services
             Console.WriteLine("AddWallet Status" + response.StatusCode);
         }
 
+        public async Task EditWallet(WalletDto walletDto, int id)
+        {
+            JsonContent jsonContent = JsonContent.Create(walletDto);
+            using HttpResponseMessage response = await client.PutAsync(client.BaseAddress + $"Wallet/EditWallet/{id}",
+                jsonContent);
+            Console.WriteLine("EditWallet Status" + response.StatusCode);
+        }
+
         public async Task DeleteWallet(int id)
         {
             using HttpResponseMessage response = await client.DeleteAsync(client.BaseAddress + $"Wallet/DeleteWallet/{id}");
