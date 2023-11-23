@@ -14,7 +14,7 @@
             <Border.GestureRecognizers>
                 <SwipeGestureRecognizer Direction="Down" Swiped="SwipeGestureRecognizer_Swiped" />
             </Border.GestureRecognizers>
-            <Border x:Name="listSwiper" BackgroundColor="Pink" StrokeShape="RoundRectangle 300" HeightRequest="8" WidthRequest="150" VerticalOptions="Center">
+            <Border x:Name="listSwiper" BackgroundColor="Pink" StrokeShape="RoundRectangle 300" HeightRequest="8" WidthRequest="100" VerticalOptions="Center">
                 <Rectangle BackgroundColor="Gray" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="8" WidthRequest="150" />
             </Border>
         </Border>
