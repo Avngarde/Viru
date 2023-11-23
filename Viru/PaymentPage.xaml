@@ -39,12 +39,12 @@
                     <RowDefinition x:Name="listSwiperRowDefinition" Height="15*" />
                     <RowDefinition Height="100*" />
                 </Grid.RowDefinitions>
-                <Border Grid.Row="0" StrokeThickness="0" VerticalOptions="Center">
+                <Border Grid.Row="0" StrokeThickness="0">
                     <Border.GestureRecognizers>
                         <SwipeGestureRecognizer Direction="Up" Swiped="SwipeGestureRecognizer_Swiped" />
                     </Border.GestureRecognizers>
-                    <Border x:Name="listSwiper" StrokeShape="RoundRectangle 300" HeightRequest="8" WidthRequest="150">
-                        <Rectangle BackgroundColor="Gray"  HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="8" WidthRequest="150" />
+                    <Border x:Name="listSwiper" StrokeShape="RoundRectangle 300" HeightRequest="8" WidthRequest="100">
+                        <Rectangle BackgroundColor="Gray" HorizontalOptions="Center" HeightRequest="8" WidthRequest="150" />
                     </Border>
                 </Border>
                 <ListView Grid.Row="1" x:Name="payments" RowHeight="55" Margin="5, 20, 5, 0" SelectionMode="None" SeparatorVisibility="None" HasUnevenRows="True" CachingStrategy="RecycleElement">
