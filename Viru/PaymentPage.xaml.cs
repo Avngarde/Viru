@@ -90,4 +90,9 @@ public partial class PaymentPage : ContentPage
 		public string PaymentCurrency { get; set; }
         public Color PaymentColor { get; set; }
 	}
+
+    private async void SwipeGestureRecognizer_Swiped(object sender, SwipedEventArgs e)
+    {
+		await Navigation.PushModalAsync(new PaymentsFullListPage(paymentList), true);
+    }
 }
