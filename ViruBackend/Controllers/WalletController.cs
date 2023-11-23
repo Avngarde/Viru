@@ -56,6 +56,21 @@ namespace ViruBackend.Controllers
             await db.SaveChangesAsync();
         }
 
+        [Route("EditWallet/{id:int}")]
+        [HttpPut]
+        public async Task EditWallet([FromBody]AddWalletDto walletDto, int id)
+        {
+            Wallet? wallet = await db.Wallets.FindAsync(id);
+            if (wallet != null)
+            {
+                wallet.TotalBalance = walletDto.TotalBalance; 
+                wallet.Color = walletDto.Color;
+                wallet.Name = walletDto.Name;
+                db.Wallets.Update(wallet);
+                await db.SaveChangesAsync();
+            }
+        }
+
         [Route("DeleteWallet/{id:int}")]
         [HttpDelete]
         public async Task DeleteWallet(int id)
