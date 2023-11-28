@@ -10,6 +10,7 @@ namespace ViruBackend
 
         public DbSet<Wallet> Wallets { get; set; }
         public DbSet<Payment> Payments { get; set; }
+        public DbSet<PaymentType> PaymentTypes { get; set; }
 
     }
 }
