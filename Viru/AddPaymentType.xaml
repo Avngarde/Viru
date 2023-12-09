@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Viru.AddPaymentType"
+             xmlns:controls="clr-namespace:Maui.ColorPicker;assembly=Maui.ColorPicker"
+             Title="AddPaymentType">
+    
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="0,1">
+            <GradientStop Color="{StaticResource Secondary}" Offset="0.1" />
+            <GradientStop Color="{StaticResource Primary}" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <VerticalStackLayout>
+        <Button x:Name="exitButton" Text="X" BackgroundColor="{StaticResource Secondary}" HorizontalOptions="Start" Clicked="exitButton_Clicked" />
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50*" />
+                <RowDefinition Height="50*" />
+            </Grid.RowDefinitions>
+            <Label Text="Type name" TextColor="LightGray" FontSize="18" VerticalTextAlignment="Center" Margin="10" Grid.Row="0" />
+            <Frame x:Name="typeNameFrame" Grid.Row="1" Margin="10, 0, 10, 0" BackgroundColor="{StaticResource Secondary}">
+                <Entry x:Name="typeNameEntry" Placeholder="Type name" TextColor="White" VerticalOptions="Center" TextChanged="typeNameEntry_TextChanged" />
+            </Frame>
+        </Grid>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40*" />
+                <RowDefinition Height="60*" />
+            </Grid.RowDefinitions>
+            <Label Text="Color" TextColor="LightGray" FontSize="18" VerticalTextAlignment="Center" Margin="10" Grid.Row="0" />
+            <Grid Grid.Row="1" HeightRequest="150" HorizontalOptions="CenterAndExpand" Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80*" />
+                    <RowDefinition Height="20*" />
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0" StrokeShape="RoundRectangle 10 10 0 0" StrokeThickness="0">
+                    <controls:ColorPicker
+                        x:Name="ColorPicker" PickedColorChanged="ColorPicker_PickedColorChanged">
+                    </controls:ColorPicker>
+                </Border>
+
+                <Border Grid.Row="1" StrokeShape="RoundRectangle 0 0 10 10" StrokeThickness="0">
+                    <Rectangle x:Name="choosenColor" BackgroundColor="Blue" Grid.Row="1" />
+                </Border>
+            </Grid>
+        </Grid>
+
+        <Button x:Name="addTypeButton" Text="Add!" BackgroundColor="{StaticResource Tertiary}" Margin="10, 60, 10, 10" Clicked="addTypeButton_Clicked">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+                                   Offset="1,1"
+                                   Radius="2"
+                                   Opacity="1"/>
+            </Button.Shadow>
+        </Button>
+
+    </VerticalStackLayout>
+</ContentPage>

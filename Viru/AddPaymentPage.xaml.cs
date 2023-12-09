@@ -1,5 +1,6 @@
 using System.Globalization;
 using System.Reflection.Metadata.Ecma335;
+using Viru.Dto;
 using Viru.Services;
 
 namespace Viru;
@@ -8,6 +9,7 @@ public partial class AddPaymentPage : ContentPage
 {
     private int walletId;
     private PaymentService paymentService = new();
+    private PaymentTypeService paymentTypeService = new();
     private bool isExpense = false;
 	private float value = 0;
 	private string description = "";
@@ -17,6 +19,11 @@ public partial class AddPaymentPage : ContentPage
 		InitializeComponent();
         this.walletId = walletId;
 	}
+
+    protected async override void OnAppearing()
+    {
+        paymentTypePicker.ItemsSource = await GetWalletTypes();
+    }
 
     private async void exitButton_Clicked(object sender, EventArgs e)
     {
@@ -88,6 +95,22 @@ public partial class AddPaymentPage : ContentPage
             HideKeyboard();
             await DisplayAlert("Success", "Payment added!", "Ok");
             await Navigation.PopModalAsync();
+        }
+    }
+
+    private async Task<List<string>> GetWalletTypes()
+    {
+        PaymentTypeDto[] paymentArray = await paymentTypeService.GetPaymentTypes(walletId);
+        List<string> payments = paymentArray.Select(payment => payment.Name).ToList();
+        payments.Add("+ Add new type");
+        return payments;
+    }
+
+    private async void paymentTypePicker_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (paymentTypePicker.SelectedIndex == paymentTypePicker.Items.ToList().Count-1)
+        {
+            await Navigation.PushModalAsync(new AddPaymentType(walletId));
         }
     }
 }
