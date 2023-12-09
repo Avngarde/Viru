@@ -58,6 +58,17 @@
             </Grid>
         </Grid>
 
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50*" />
+                <RowDefinition Height="50*" />
+            </Grid.RowDefinitions>
+            <Label Text="Type" TextColor="LightGray" FontSize="18" VerticalTextAlignment="Center" Margin="10" Grid.Row="0" />
+            <Frame Grid.Row="1" Margin="10, 0, 10, 0" BackgroundColor="{StaticResource Secondary}">
+                <Picker x:Name="paymentTypePicker" Title="Payment type" VerticalOptions="Center" TitleColor="LightGray" SelectedIndexChanged="paymentTypePicker_SelectedIndexChanged" />
+            </Frame>
+        </Grid>
+
         <Button x:Name="addPaymentButton" Text="Add!" BackgroundColor="{StaticResource Tertiary}" Margin="10, 30, 10, 10" Clicked="addPaymentButton_Clicked">
             <Button.Shadow>
                 <Shadow Brush="Black"

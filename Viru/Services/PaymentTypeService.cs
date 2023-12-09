@@ -39,7 +39,7 @@ namespace Viru.Services
             };
 
             JsonContent jsonContent = JsonContent.Create(paymentTypeDto);
-            using HttpResponseMessage response = await client.PostAsync(client.BaseAddress + "PaymentType/CreatePaymentTypes",
+            using HttpResponseMessage response = await client.PostAsync(client.BaseAddress + "PaymentType/CreatePaymentType",
                 jsonContent);
             Console.WriteLine("AddPaymentType Status" + response.StatusCode);
         }
