@@ -17,7 +17,7 @@ namespace Viru.Services
         public WalletService()
         {
             client = new HttpClient();
-            client.BaseAddress = new Uri("http://192.168.1.202:5255");
+            client.BaseAddress = new Uri("http://192.168.0.142:5255");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
