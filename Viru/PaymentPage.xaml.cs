@@ -39,7 +39,7 @@ public partial class PaymentPage : ContentPage
 					Id = payment.Id,
 					PaymentColor = payment.Value < 0 ? Color.FromArgb("#D62828") : Color.FromArgb("#2e8b57"),
 					Description = payment.Description,
-					PaymentCurrency = $"{payment.Value} {payment.Currency}",
+					PaymentCurrency = payment.Value > 0 ? $"+{payment.Value} {payment.Currency}" : $"{payment.Value} {payment.Currency}",
 					PaymentTypeColor = Color.FromArgb(paymentTypeColorRgb)
                 }
 			);
