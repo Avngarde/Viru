@@ -61,7 +61,7 @@
                                     </Border.StrokeShape>
                                     <Border.Shadow>
                                         <Shadow Brush="{Binding PaymentTypeColor}"
-                                   Offset="1,1"
+                                   Offset="2,2"
                                    Radius="2"
                                    Opacity="1"/>
                                     </Border.Shadow>
@@ -70,7 +70,7 @@
                                             <ColumnDefinition Width="50*" />
                                             <ColumnDefinition Width="50*" />
                                         </Grid.ColumnDefinitions>
-                                        <Label Text="{Binding Description}" Grid.Column="0" TextColor="{Binding PaymentTypeColor}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="16"></Label>
+                                        <Label Text="{Binding Description}" Grid.Column="0" TextColor="{Binding PaymentTypeColor}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="16" FontAttributes="Bold"></Label>
                                         <Label Text="{Binding PaymentCurrency}" Grid.Column="1" TextColor="{Binding PaymentColor}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="20"></Label>
                                     </Grid>
                                 </Border>
