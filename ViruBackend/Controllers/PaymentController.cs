@@ -37,6 +37,7 @@ namespace ViruBackend.Controllers
                 Currency = paymentDto.Currency,
                 Description = paymentDto.Description,
                 Value = paymentDto.Value,
+                PaymentTypeId = paymentDto.PaymentTypeId,
                 Wallet = db.Wallets.Where(wallet => wallet.Id == paymentDto.WalletId).First(),
             };
 

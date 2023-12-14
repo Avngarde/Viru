@@ -10,6 +10,7 @@ namespace ViruBackend.Models
         public string? Currency { get; set; }
         public float Value { get; set; }
 
+        public int PaymentTypeId { get; set; }
         public int WalletId { get; set; }
         public Wallet Wallet { get; set; }
     }

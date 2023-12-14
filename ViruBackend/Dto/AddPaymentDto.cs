@@ -6,5 +6,6 @@
         public string? Currency { get; set; }
         public int Value { get; set; }
         public int WalletId { get; set; }
+        public int PaymentTypeId { get; set; }
     }
 }
