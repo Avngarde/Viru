@@ -24,14 +24,15 @@ namespace Viru.Services
             return await response.Content.ReadFromJsonAsync<PaymentDto[]>();
         }
 
-        public async Task AddPayment(string description, string currency, float value, int walletId)
+        public async Task AddPayment(string description, string currency, float value, int walletId, int paymentTypeId)
         {
             AddPaymentDto addPaymentDto = new AddPaymentDto()
             {
                 Description = description,
                 Currency = currency,
                 Value = value,
-                WalletId = walletId
+                WalletId = walletId,
+                PaymentTypeId = paymentTypeId
             };
 
             JsonContent jsonContent = JsonContent.Create(addPaymentDto);

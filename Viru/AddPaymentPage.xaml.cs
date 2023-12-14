@@ -13,6 +13,7 @@ public partial class AddPaymentPage : ContentPage
     private bool isExpense = false;
 	private float value = 0;
 	private string description = "";
+    private string selectedType;
 
     public AddPaymentPage(int walletId)
 	{
@@ -91,7 +92,8 @@ public partial class AddPaymentPage : ContentPage
         {
             value = Math.Abs(value);
             if (isExpense) value = value - (value * 2);
-            await paymentService.AddPayment(description, "", value, walletId);
+            int paymentTypeId = await GetPaymentTypeIdByName();
+            await paymentService.AddPayment(description, "", value, walletId, paymentTypeId);
             HideKeyboard();
             await DisplayAlert("Success", "Payment added!", "Ok");
             await Navigation.PopModalAsync();
@@ -104,6 +106,12 @@ public partial class AddPaymentPage : ContentPage
         List<string> payments = paymentArray.Select(payment => payment.Name).ToList();
         payments.Add("+ Add new type");
         return payments;
+    }
+
+    private async Task<int> GetPaymentTypeIdByName()
+    {
+        int id = await paymentTypeService.GetPaymentTypeIdByName(walletId, paymentTypePicker.SelectedItem.ToString());
+        return id;
     }
 
     private async void paymentTypePicker_SelectedIndexChanged(object sender, EventArgs e)

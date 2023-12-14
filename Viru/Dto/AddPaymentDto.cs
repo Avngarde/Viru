@@ -12,5 +12,6 @@ namespace Viru.Dto
         public string? Currency { get; set; }
         public float Value { get; set; }
         public int WalletId { get; set; }
+        public int PaymentTypeId { get; set; }
     }
 }

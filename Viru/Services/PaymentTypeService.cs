@@ -5,6 +5,7 @@ using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Viru.Dto;
 
 namespace Viru.Services
@@ -27,6 +28,29 @@ namespace Viru.Services
             using HttpResponseMessage response = await client.GetAsync(client.BaseAddress + $"PaymentType/GetPaymentTypes/{walletId}");
             Console.WriteLine("GetAll Status: " + response.StatusCode);
             return await response.Content.ReadFromJsonAsync<PaymentTypeDto[]>();
+        }
+
+        // walletId added to avoid conflict of names between different wallets
+        public async Task<int> GetPaymentTypeIdByName(int walletId, string name)
+        {
+            PaymentTypeDto[] paymentTypes = await GetPaymentTypes(walletId);
+            PaymentTypeDto searchedType = paymentTypes.Where(paymentType => paymentType.Name == name).FirstOrDefault();
+            return searchedType.Id;
+        }
+
+        public async Task<string> GetPaymentColorById(int walletId, int paymentTypeId)
+        {
+            PaymentTypeDto[] paymentTypes = await GetPaymentTypes(walletId);
+            PaymentTypeDto searchedType = paymentTypes.Where(paymentType => paymentType.Id == paymentTypeId).FirstOrDefault();
+
+            if (searchedType != null)
+            {
+                return searchedType.Color;
+            }
+            else
+            {
+                return "#FFFFFF";
+            }
         }
 
         public async Task AddPaymentType(string name, string color, int walletId)

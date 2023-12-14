@@ -8,6 +8,7 @@ public partial class PaymentPage : ContentPage
 	private int WalletId;
 	public List<PaymentListModel> paymentList = new();
     private PaymentService paymentService = new PaymentService();
+	private PaymentTypeService paymentTypeService = new();
 	private bool isAddPageOpen = false;
 
     public PaymentPage(WalletsListModel wallet)
@@ -30,18 +31,21 @@ public partial class PaymentPage : ContentPage
 		PaymentDto[] payments = await paymentService.GetPayments(WalletId);
 		foreach (PaymentDto payment in payments)
 		{
-			paymentTemp.Add(
+			string paymentTypeColorRgb = await paymentTypeService.GetPaymentColorById(WalletId, payment.PaymentTypeId);
+
+            paymentTemp.Add(
 				new PaymentListModel()
 				{
 					Id = payment.Id,
 					PaymentColor = payment.Value < 0 ? Color.FromArgb("#D62828") : Color.FromArgb("#2e8b57"),
 					Description = payment.Description,
-					PaymentCurrency = $"{payment.Value} {payment.Currency}"
+					PaymentCurrency = $"{payment.Value} {payment.Currency}",
+					PaymentTypeColor = Color.FromArgb(paymentTypeColorRgb)
                 }
 			);
 		}
-		SummarizePayments(payments);
 
+		SummarizePayments(payments);
 		return paymentTemp;
 	}
 
@@ -88,6 +92,7 @@ public partial class PaymentPage : ContentPage
 		public int Id { get; set; }
 		public string Description { get; set; }
 		public string PaymentCurrency { get; set; }
+		public Color PaymentTypeColor { get; set; }
         public Color PaymentColor { get; set; }
 	}
 
