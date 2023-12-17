@@ -32,7 +32,8 @@ namespace Viru.Services
                 Currency = currency,
                 Value = value,
                 WalletId = walletId,
-                PaymentTypeId = paymentTypeId
+                PaymentTypeId = paymentTypeId,
+                Created = DateTime.UtcNow
             };
 
             JsonContent jsonContent = JsonContent.Create(addPaymentDto);
