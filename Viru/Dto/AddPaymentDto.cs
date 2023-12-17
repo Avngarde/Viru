@@ -13,5 +13,6 @@ namespace Viru.Dto
         public float Value { get; set; }
         public int WalletId { get; set; }
         public int PaymentTypeId { get; set; }
+        public DateTime Created { get; set; }
     }
 }
