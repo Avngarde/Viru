@@ -17,7 +17,7 @@ namespace Viru.Services
         public PaymentTypeService()
         {
             client = new HttpClient();
-            client.BaseAddress = new Uri("http://192.168.0.142:5255");
+            client.BaseAddress = new Uri("http://192.168.0.130:5255");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
