@@ -24,9 +24,26 @@
                 </LinearGradientBrush>
             </Grid.Background>
             <Grid>
-                <Label x:Name="summaryLabel" Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="70" FontAttributes="Bold" TextColor="#31E981"></Label>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40*" />
+                    <RowDefinition Height="20*" />
+                    <RowDefinition Height="40*" />
+                </Grid.RowDefinitions>
+
+                <Label x:Name="dateSelected" Grid.Row="0"  HorizontalTextAlignment="Center" VerticalTextAlignment="End" FontSize="20" TextColor="Gray" Text="{Binding selectedDateString}"></Label>    
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10*" />
+                        <ColumnDefinition Width="80*" />
+                        <ColumnDefinition Width="10*" />
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="previousDateButton" Grid.Column="0" FontSize="20" BackgroundColor="Transparent" FontAttributes="Bold" TextColor="#808080" Text="&lt;" Clicked="previousDateButton_Clicked"></Button>
+                    <Label x:Name="summaryLabel" Grid.Column="1"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="70" FontAttributes="Bold" TextColor="#31E981"></Label>
+                    <Button x:Name="nextDateButton" Grid.Column="2" FontSize="20" FontAttributes="Bold" BackgroundColor="Transparent" TextColor="#808080" Text="&gt;" Clicked="nextDateButton_Clicked"></Button>
+                </Grid>
             </Grid>
         </Grid>
+
 
         <Border Grid.Row="1" StrokeShape="RoundRectangle 40,40,0,0" Stroke="White" StrokeThickness="0" BackgroundColor="White">
             <Border.Shadow>

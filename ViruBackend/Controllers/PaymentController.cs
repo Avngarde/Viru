@@ -38,6 +38,7 @@ namespace ViruBackend.Controllers
                 Description = paymentDto.Description,
                 Value = paymentDto.Value,
                 PaymentTypeId = paymentDto.PaymentTypeId,
+                Created = paymentDto.Created,
                 Wallet = db.Wallets.Where(wallet => wallet.Id == paymentDto.WalletId).First(),
             };
 

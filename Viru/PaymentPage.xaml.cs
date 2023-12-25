@@ -10,12 +10,34 @@ public partial class PaymentPage : ContentPage
     private PaymentService paymentService = new PaymentService();
 	private PaymentTypeService paymentTypeService = new();
 	private bool isAddPageOpen = false;
+	private int selectedYear = DateTime.Now.Year;
+	private int selectedMonth = DateTime.Now.Month;
+
+	private Dictionary<int, string> monthNumberName = new Dictionary<int, string>()
+	{
+		{1, "January"},
+		{2, "February"},
+		{3, "March"},
+		{4, "April"},
+		{5, "May"},
+		{6, "June"},
+		{7, "July"},
+		{8, "August"},
+		{9, "September"},
+		{10, "October"},
+		{11, "November"},
+		{12, "December"}
+	};
+	public string selectedDateString = "";
 
     public PaymentPage(WalletsListModel wallet)
 	{
 		Title = wallet.Name;
 		WalletId = wallet.Id;
 		InitializeComponent();
+
+		selectedDateString = $"{monthNumberName[selectedMonth]} {selectedYear}";
+		dateSelected.Text = selectedDateString;
         TitleBarText.Text = Title;
     }
 
@@ -29,6 +51,7 @@ public partial class PaymentPage : ContentPage
 	{
 		List<PaymentListModel> paymentTemp = new();
 		PaymentDto[] payments = await paymentService.GetPayments(WalletId);
+		payments = payments.Where(x => x.Created.Month == selectedMonth && x.Created.Year == selectedYear).ToArray();
 		foreach (PaymentDto payment in payments)
 		{
 			string paymentTypeColorRgb = await paymentTypeService.GetPaymentColorById(WalletId, payment.PaymentTypeId);
@@ -100,4 +123,36 @@ public partial class PaymentPage : ContentPage
     {
 		await Navigation.PushModalAsync(new PaymentsFullListPage(paymentList), true);
     }
+
+	private void previousDateButton_Clicked(object sender, EventArgs e)
+	{
+		if (selectedMonth == 1)
+		{
+			selectedMonth = 12;
+			selectedYear -= 1;
+		}
+		else
+		{
+			selectedMonth -= 1;
+		}
+		selectedDateString = $"{monthNumberName[selectedMonth]} {selectedYear}";
+		dateSelected.Text = selectedDateString;
+		OnAppearing();
+	}
+
+	private async void nextDateButton_Clicked(object sender, EventArgs e)
+	{
+		if (selectedMonth == 12)
+		{
+			selectedMonth = 1;
+			selectedYear += 1;
+		}
+		else 
+		{
+			selectedMonth += 1;
+		}
+		selectedDateString = $"{monthNumberName[selectedMonth]} {selectedYear}";
+		dateSelected.Text = selectedDateString;
+		OnAppearing();
+	}
 }
