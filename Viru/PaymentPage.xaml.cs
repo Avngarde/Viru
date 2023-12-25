@@ -69,6 +69,12 @@ public partial class PaymentPage : ContentPage
 		}
 
 		SummarizePayments(payments);
+
+		if (payments.Length > 0)
+			listRowDefinition.Height = new GridLength(25, GridUnitType.Star);
+		else 
+			listRowDefinition.Height = new GridLength(5, GridUnitType.Star);
+
 		return paymentTemp;
 	}
 
