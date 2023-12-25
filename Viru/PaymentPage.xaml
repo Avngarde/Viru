@@ -13,7 +13,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition x:Name="summaryRowDefinition" Height="80*" />
-            <RowDefinition x:Name="listRowDefinition" Height="30*" />
+            <RowDefinition x:Name="listRowDefinition" Height="5*" />
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
