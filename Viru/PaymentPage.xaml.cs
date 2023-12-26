@@ -7,6 +7,7 @@ public partial class PaymentPage : ContentPage
 {
 	private int WalletId;
 	public List<PaymentListModel> paymentList = new();
+	public PaymentDto[] paymentsArray;
     private PaymentService paymentService = new PaymentService();
 	private PaymentTypeService paymentTypeService = new();
 	private bool isAddPageOpen = false;
@@ -29,6 +30,8 @@ public partial class PaymentPage : ContentPage
 		{12, "December"}
 	};
 	public string selectedDateString = "";
+	private List<int> availableYears = new();
+	private List<int> availableMonths = new();
 
     public PaymentPage(WalletsListModel wallet)
 	{
@@ -47,11 +50,26 @@ public partial class PaymentPage : ContentPage
 		payments.ItemsSource = paymentList;
     }
 
+	private void SetAvailableDates(PaymentDto[] payments)
+	{
+		availableYears.Add(selectedYear);
+		availableMonths.Add(selectedMonth);
+		foreach(PaymentDto payment in payments)
+		{
+			if (!availableYears.Contains(payment.Created.Year))
+				availableYears.Add(payment.Created.Year);
+			if (!availableMonths.Contains(payment.Created.Month))
+				availableMonths.Add(payment.Created.Month);
+		}
+	}
+
 	private async Task<List<PaymentListModel>> GetPayments()
 	{
 		List<PaymentListModel> paymentTemp = new();
 		PaymentDto[] payments = await paymentService.GetPayments(WalletId);
+		SetAvailableDates(payments);
 		payments = payments.Where(x => x.Created.Month == selectedMonth && x.Created.Year == selectedYear).ToArray();
+		paymentsArray = payments;
 		foreach (PaymentDto payment in payments)
 		{
 			string paymentTypeColorRgb = await paymentTypeService.GetPaymentColorById(WalletId, payment.PaymentTypeId);
@@ -130,8 +148,10 @@ public partial class PaymentPage : ContentPage
 		await Navigation.PushModalAsync(new PaymentsFullListPage(paymentList), true);
     }
 
-	private void previousDateButton_Clicked(object sender, EventArgs e)
+	private async void previousDateButton_Clicked(object sender, EventArgs e)
 	{
+		int yearTemp = selectedYear;
+		int monthTemp = selectedMonth;
 		if (selectedMonth == 1)
 		{
 			selectedMonth = 12;
@@ -141,6 +161,12 @@ public partial class PaymentPage : ContentPage
 		{
 			selectedMonth -= 1;
 		}
+		if (!availableYears.Contains(selectedYear) || !availableMonths.Contains(selectedMonth))
+		{
+			selectedYear = yearTemp;
+			selectedMonth = monthTemp;
+			return;
+		}
 		selectedDateString = $"{monthNumberName[selectedMonth]} {selectedYear}";
 		dateSelected.Text = selectedDateString;
 		OnAppearing();
@@ -148,6 +174,8 @@ public partial class PaymentPage : ContentPage
 
 	private async void nextDateButton_Clicked(object sender, EventArgs e)
 	{
+		int yearTemp = selectedYear;
+		int monthTemp = selectedMonth;
 		if (selectedMonth == 12)
 		{
 			selectedMonth = 1;
@@ -157,8 +185,19 @@ public partial class PaymentPage : ContentPage
 		{
 			selectedMonth += 1;
 		}
+		if (!availableYears.Contains(selectedYear) || !availableMonths.Contains(selectedMonth))
+		{
+			selectedYear = yearTemp;
+			selectedMonth = monthTemp;
+			return;
+		}
 		selectedDateString = $"{monthNumberName[selectedMonth]} {selectedYear}";
 		dateSelected.Text = selectedDateString;
 		OnAppearing();
+	}
+
+	private async void chartsPageButton_Clicked(object sender, EventArgs e)
+	{
+		await Navigation.PushAsync(new WalletCharts(WalletId, this.Title, availableYears, availableMonths, paymentsArray));
 	}
 }
