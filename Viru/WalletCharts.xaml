@@ -9,12 +9,82 @@
             <RowDefinition Height="75*" />
             <RowDefinition Height="18*" />                        
         </Grid.RowDefinitions>
+      
+      <Grid Grid.Row="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+        </Grid.ColumnDefinitions>
 
-      <Label Grid.Row="0" Text="December 2023" Margin="0,0,8,0" FontSize="20" TextColor="Gray" VerticalTextAlignment="Center" HorizontalTextAlignment="End" />  
+        <Label Grid.Column="1" Text="December 2023" Margin="0,0,8,0" FontSize="20" TextColor="Gray" VerticalTextAlignment="Center" HorizontalTextAlignment="End" />
+                <Grid Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="25*" />
+                        <ColumnDefinition Width="25*" />
+                        <ColumnDefinition Width="25*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="End">Income</Label>
+                    <Switch x:Name="typeSwitch" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center" ThumbColor="Green" Toggled="typeSwitch_OnToggled" />
+                    <Label Grid.Column="2" TextColor="Gray" VerticalOptions="Center">Expense</Label>
+                </Grid> 
+      </Grid>
+
       <Border Grid.Row="1" StrokeShape="RoundRectangle 10" Stroke="LightGray" Margin="5">
+        <ListView x:Name="summaryListView" Margin="10">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Margin="0, 15, 0, 0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40*" />
+                                <RowDefinition Height="5*" />
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="70*" />
+                                    <ColumnDefinition Width="15*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Text="{Binding TypeName}" TextColor="{Binding TypeColor}" FontAttributes="Bold" FontSize="17" />
+                                <Label Grid.Column="1" Text="{Binding SumPercentLabel}" TextColor="{Binding TypeColor}" FontAttributes="Bold" FontSize="17" />
+                            </Grid>
+                            <ProgressBar Margin="0,3,0,0" Grid.Row="1" Progress="{Binding SumPercent}" ProgressColor="{Binding TypeColor}" ScaleY="2.5" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>      
       </Border>
 
       <Border Grid.Row="2" StrokeShape="RoundRectangle 10" Stroke="LightGray" Margin="5">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="25*" />
+                <ColumnDefinition Width="25*" />
+                <ColumnDefinition Width="25*" />
+            </Grid.ColumnDefinitions>
+            <VerticalStackLayout Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center">
+                <Label FontSize="20" TextColor="Red">-500</Label>
+                <HorizontalStackLayout>
+                    <Rectangle Fill="Red" WidthRequest="20" HeightRequest="3" />
+                    <Label Margin="5,0,0,0" FontSize="16">Expense</Label>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center">
+                <Label FontSize="20" TextColor="Green">+2000</Label>
+                <HorizontalStackLayout>
+                    <Rectangle Fill="Green" WidthRequest="20" HeightRequest="3" />
+                    <Label Margin="5,0,0,0" FontSize="16">Income</Label>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+            <VerticalStackLayout Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Center">
+                <Label FontSize="20" TextColor="{StaticResource Primary}">1500</Label>
+                <HorizontalStackLayout>
+                    <Rectangle Fill="{StaticResource Primary}" WidthRequest="20" HeightRequest="3" />
+                    <Label Margin="5,0,0,0" FontSize="16">Total</Label>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </Grid>  
       </Border>
     </Grid>
 </ContentPage>
