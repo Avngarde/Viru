@@ -11,6 +11,9 @@ public partial class WalletCharts : ContentPage
     List<int> availableMonths;
     PaymentDto[] payments;
     PaymentTypeDto[] paymentTypes;
+    float incomeSum;
+    float expensesSum;
+    float total;
 
     bool expensesToggled = false;
 
@@ -29,6 +32,14 @@ public partial class WalletCharts : ContentPage
     protected override async void OnAppearing()
     {
         await InitPaymentTypes();
+
+        incomeSum = payments.Where(x => x.Value > 0).Sum(x => x.Value);
+        expensesSum = payments.Where(x => x.Value < 0).Sum(x => x.Value);
+        total = incomeSum - Math.Abs(expensesSum);
+        incomeLabel.Text = $"+{incomeSum}";
+        expenseLabel.Text = $"{expensesSum}";
+        totalLabel.Text = total.ToString();
+
         SummarizeTypes();
     }
 
@@ -42,7 +53,6 @@ public partial class WalletCharts : ContentPage
     {
         paymentTypesSummaries.Clear();
         summaryListView.ItemsSource = null;
-        float sumTotal = expensesToggled ? payments.Where(x => x.Value < 0).Sum(x => x.Value) : payments.Where(x => x.Value > 0).Sum(x => x.Value);
         foreach(PaymentTypeDto type in paymentTypes)
         {
             float typePaymentsValueSum = 0;
@@ -51,21 +61,29 @@ public partial class WalletCharts : ContentPage
                 typePaymentsValueSum = payments
                     .Where(x => x.PaymentTypeId == type.Id && x.Value < 0)
                     .Sum(x => x.Value);
+                
+                paymentTypesSummaries.Add(new PaymentTypeSummaryModel() 
+                { 
+                    TypeName = type.Name,
+                    SumPercent = Math.Abs(typePaymentsValueSum) / Math.Abs(expensesSum),
+                    SumPercentLabel = $"{Math.Round((Math.Abs(typePaymentsValueSum) / Math.Abs(expensesSum))*100)}%",
+                    TypeColor = Color.FromRgba(type.Color)
+                });
             }
             else 
             {
                 typePaymentsValueSum = payments
                     .Where(x => x.PaymentTypeId == type.Id && x.Value >= 0)
-                    .Sum(x => x.Value);                
-            }
+                    .Sum(x => x.Value); 
 
-            paymentTypesSummaries.Add(new PaymentTypeSummaryModel() 
-            { 
-                TypeName = type.Name,
-                SumPercent = typePaymentsValueSum / sumTotal,
-                SumPercentLabel = $"{Math.Round((typePaymentsValueSum / sumTotal)*100)}%",
-                TypeColor = Color.FromRgba(type.Color)
-            });
+                paymentTypesSummaries.Add(new PaymentTypeSummaryModel() 
+                { 
+                    TypeName = type.Name,
+                    SumPercent = typePaymentsValueSum / incomeSum,
+                    SumPercentLabel = $"{Math.Round((typePaymentsValueSum / incomeSum)*100)}%",
+                    TypeColor = Color.FromRgba(type.Color)
+                });             
+            }
         }
         paymentTypesSummaries = paymentTypesSummaries.OrderByDescending(type => type.SumPercent).ToList();
         summaryListView.ItemsSource = paymentTypesSummaries;    

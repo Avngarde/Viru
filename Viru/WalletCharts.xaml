@@ -64,21 +64,21 @@
                 <ColumnDefinition Width="25*" />
             </Grid.ColumnDefinitions>
             <VerticalStackLayout Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center">
-                <Label FontSize="20" TextColor="Red">-500</Label>
+                <Label x:Name="expenseLabel" FontSize="20" TextColor="Red" />
                 <HorizontalStackLayout>
                     <Rectangle Fill="Red" WidthRequest="20" HeightRequest="3" />
                     <Label Margin="5,0,0,0" FontSize="16">Expense</Label>
                 </HorizontalStackLayout>
             </VerticalStackLayout>
             <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center">
-                <Label FontSize="20" TextColor="Green">+2000</Label>
+                <Label x:Name="incomeLabel" FontSize="20" TextColor="Green" />
                 <HorizontalStackLayout>
                     <Rectangle Fill="Green" WidthRequest="20" HeightRequest="3" />
                     <Label Margin="5,0,0,0" FontSize="16">Income</Label>
                 </HorizontalStackLayout>
             </VerticalStackLayout>
             <VerticalStackLayout Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Center">
-                <Label FontSize="20" TextColor="{StaticResource Primary}">1500</Label>
+                <Label x:Name="totalLabel" FontSize="20" TextColor="{StaticResource Primary}" />
                 <HorizontalStackLayout>
                     <Rectangle Fill="{StaticResource Primary}" WidthRequest="20" HeightRequest="3" />
                     <Label Margin="5,0,0,0" FontSize="16">Total</Label>
