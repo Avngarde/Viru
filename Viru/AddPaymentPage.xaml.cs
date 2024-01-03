@@ -42,6 +42,7 @@ public partial class AddPaymentPage : ContentPage
         {
             if (e.NewTextValue == "") value = 0;
             else value = float.Parse(e.NewTextValue, CultureInfo.InvariantCulture);
+
         }
         catch (Exception)
         {
