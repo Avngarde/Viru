@@ -30,7 +30,7 @@
                     <RowDefinition Height="40*" />
                 </Grid.RowDefinitions>
 
-                <Label x:Name="dateSelected" Grid.Row="0"  HorizontalTextAlignment="Center" VerticalTextAlignment="End" FontSize="20" TextColor="Gray" Text="{Binding selectedDateString}"></Label>    
+                <Label x:Name="dateSelected" Grid.Row="0"  HorizontalTextAlignment="Center" VerticalTextAlignment="End" FontSize="20" TextColor="LightGray" Text="{Binding selectedDateString}"></Label>    
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="10*" />
